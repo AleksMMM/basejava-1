@@ -12,20 +12,25 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (r.uuid.equals(r.uuid)) {
-            System.out.println("Резюме есть в базе");
-        } else if (size == storage.length) {
-            System.out.println("Переполнена база");
-        } else {
-            storage[size] = r;
-            size++;
+
+        for (Resume res: getAll()) {
+            if (res.uuid.equals(r.uuid)) {
+                System.out.println("Резюме есть в базе");
+            } else if (size == storage.length) {
+                System.out.println("Переполнена база");
+            } else {
+                storage[size] = r;
+                size++;
+            }
         }
+
     }
 
     Resume get(String uuid) {
-        for (Resume rez: storage) {
-            if (rez.uuid.equals(uuid)) {
-                return rez;
+
+        for (Resume res: getAll()) {
+            if (res.uuid.equals(uuid)) {
+                return res;
             }
         }
         return null;
