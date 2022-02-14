@@ -12,8 +12,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-
-        for (Resume res: getAll()) {
+        for (Resume res: Arrays.copyOf(storage, size)) {
             if (res.uuid.equals(r.uuid)) {
                 System.out.println("Резюме есть в базе");
             } else if (size == storage.length) {
@@ -27,8 +26,7 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-
-        for (Resume res: getAll()) {
+        for (Resume res: Arrays.copyOf(storage, size)) {
             if (res.uuid.equals(uuid)) {
                 return res;
             }
@@ -39,12 +37,16 @@ public class ArrayStorage {
     void delete(String uuid) {
         int index = 0;
         for (int i = 0; i < storage.length; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i] != null && storage[i].uuid.equals(uuid)) {
                 index = i;
+                storage[index] = storage[size - 1];
+                storage[size - 1] = null;
+                size--;
+                break;
+            } else {
+                break;
             }
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
+
         }
     }
 
@@ -52,7 +54,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size());
+        return Arrays.copyOf(storage, size);
     }
 
     int size() {
