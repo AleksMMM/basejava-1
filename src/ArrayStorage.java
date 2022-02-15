@@ -12,8 +12,8 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        for (Resume res: Arrays.copyOf(storage, size)) {
-            if (res.uuid.equals(r.uuid)) {
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i].uuid.equals(r.uuid)) {
                 System.out.println("Резюме есть в базе");
             } else if (size == storage.length) {
                 System.out.println("Переполнена база");
@@ -26,20 +26,21 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-        for (Resume res: Arrays.copyOf(storage, size)) {
-            if (res.uuid.equals(uuid)) {
-                return res;
+        for (int i = 0; i < storage.length; i++) {
+
+            {
+                if (storage[i].uuid.equals(uuid)) {
+                    return storage[i];
+                }
             }
         }
         return null;
     }
 
     void delete(String uuid) {
-        int index = 0;
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null && storage[i].uuid.equals(uuid)) {
-                index = i;
-                storage[index] = storage[size - 1];
+                storage[i] = storage[size - 1];
                 storage[size - 1] = null;
                 size--;
                 break;
