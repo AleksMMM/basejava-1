@@ -12,7 +12,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(r.uuid)) {
                 System.out.println("Резюме есть в базе");
             } else if (size == storage.length) {
@@ -26,7 +26,7 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
 
             {
                 if (storage[i].uuid.equals(uuid)) {
@@ -38,7 +38,7 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i] != null && storage[i].uuid.equals(uuid)) {
                 storage[i] = storage[size - 1];
                 storage[size - 1] = null;
