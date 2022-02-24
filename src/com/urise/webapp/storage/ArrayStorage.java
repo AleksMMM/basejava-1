@@ -8,14 +8,14 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10000];
     private int size = 0;
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);
     }
 
-   public void save(Resume r) {
+    public void save(Resume r) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(r.getUuid())) {
                 System.out.println("Резюме есть в базе" + r.getUuid());
@@ -29,14 +29,13 @@ public class ArrayStorage {
 
     }
 
-   public Resume get(String uuid) {
+    public Resume get(String uuid) {
         for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid().equals(uuid)) {
+                return storage[i];
+            }
+                System.out.println("резюме не найдено в базе" + uuid);
 
-                if (storage[i].getUuid().equals(uuid)) {
-                    return storage[i];
-                } else {
-                    System.out.println("резюме не найдено в базе" + uuid);
-                }
         }
         return null;
     }
@@ -48,13 +47,13 @@ public class ArrayStorage {
                 storage[size - 1] = null;
                 size--;
                 break;
-            } else {
+            }
                 System.out.println("резюме не найдено в базе" + uuid);
                 break;
             }
 
         }
-    }
+
 
     /**
      * @return array, contains only Resumes in storage (without null)
@@ -69,12 +68,12 @@ public class ArrayStorage {
 
     public void update(Resume resume) {
         for (int i = 0; i < size; i++) {
-           if (storage[i].equals(resume)) {
-               storage[i] = resume;
-               size++;
-           } else {
-               System.out.println("резюме нет в базе" + resume.getUuid());
-           }
+            if (storage[i].equals(resume)) {
+                storage[i] = resume;
+                size++;
+            } else {
+                System.out.println("резюме нет в базе" + resume.getUuid());
+            }
         }
     }
 }

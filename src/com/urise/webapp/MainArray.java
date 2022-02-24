@@ -1,3 +1,5 @@
+package com.urise.webapp;
+
 import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.ArrayStorage;
 
@@ -34,8 +36,7 @@ public class MainArray {
                     System.out.println(ARRAY_STORAGE.size());
                     break;
                 case "save":
-                    r = new Resume();
-                    r.setUuid(uuid);
+                    r = new Resume(uuid);
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
@@ -53,8 +54,7 @@ public class MainArray {
                 case "exit":
                     return;
                 case "update":
-                  Resume resumeUpdate = new Resume();
-                    resumeUpdate.setUuid(uuid);
+                  Resume resumeUpdate = new Resume(uuid);
                     ARRAY_STORAGE.update(resumeUpdate);
                     printAll();
                     break;
