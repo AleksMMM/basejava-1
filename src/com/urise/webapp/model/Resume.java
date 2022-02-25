@@ -12,8 +12,6 @@ public class Resume {
         this.uuid = uuid;
     }
 
-
-
     public String getUuid() {
         return uuid;
     }
