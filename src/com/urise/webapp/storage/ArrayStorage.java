@@ -60,13 +60,12 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].equals(resume)) {
-                storage[i] = resume;
-                size++;
-            } else {
-                System.out.println("резюме нет в базе" + resume.getUuid());
-            }
+        int index = getIndex(resume.getUuid());
+
+        if (index == -1) {
+            System.out.println("Резюме нет в базе" + resume.getUuid());
+        } else {
+            storage[index] = resume;
         }
     }
 
